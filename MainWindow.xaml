@@ -1,0 +1,694 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" x:Name="calc" x:Class="Algebra_And_Calculus.MainWindow"
+        Title="Calc++" Height="562" Width="564" ResizeMode="CanMinimize" Loaded="calc_Loaded" Icon="Calc(7).png">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Expander.MouseOver.Circle.Stroke" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Expander.MouseOver.Circle.Fill" Color="Transparent"/>
+        <SolidColorBrush x:Key="Expander.MouseOver.Arrow.Stroke" Color="#222"/>
+        <SolidColorBrush x:Key="Expander.Pressed.Circle.Stroke" Color="#FF526C7B"/>
+        <SolidColorBrush x:Key="Expander.Pressed.Circle.Fill"/>
+        <SolidColorBrush x:Key="Expander.Pressed.Arrow.Stroke" Color="#FF003366"/>
+        <SolidColorBrush x:Key="Expander.Disabled.Circle.Stroke" Color="DarkGray"/>
+        <SolidColorBrush x:Key="Expander.Disabled.Circle.Fill" Color="Transparent"/>
+        <SolidColorBrush x:Key="Expander.Disabled.Arrow.Stroke" Color="#666"/>
+        <SolidColorBrush x:Key="Expander.Static.Circle.Fill" Color="Transparent"/>
+        <SolidColorBrush x:Key="Expander.Static.Circle.Stroke" Color="DarkGray"/>
+        <SolidColorBrush x:Key="Expander.Static.Arrow.Stroke" Color="#666"/>
+        <Style x:Key="ExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="19"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="-90"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle" Fill="{StaticResource Expander.Static.Circle.Fill}" HorizontalAlignment="Center" Height="19" Stroke="{StaticResource Expander.Static.Circle.Stroke}" VerticalAlignment="Center" Width="19"/>
+                                    <Path x:Name="arrow" Data="M 1,1.5 L 4.5,5 L 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="false" Stroke="{StaticResource Expander.Static.Arrow.Stroke}" StrokeThickness="2" VerticalAlignment="Center"/>
+                                </Grid>
+                                <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" Grid.Row="1" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.MouseOver.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Stroke}"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Pressed.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Disabled.Arrow.Stroke}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="19"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="180"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle" Fill="{StaticResource Expander.Static.Circle.Fill}" HorizontalAlignment="Center" Height="19" Stroke="{StaticResource Expander.Static.Circle.Stroke}" VerticalAlignment="Center" Width="19"/>
+                                    <Path x:Name="arrow" Data="M 1,1.5 L 4.5,5 L 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="false" Stroke="{StaticResource Expander.Static.Arrow.Stroke}" StrokeThickness="2" VerticalAlignment="Center"/>
+                                </Grid>
+                                <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.MouseOver.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Stroke}"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Pressed.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Disabled.Arrow.Stroke}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="19"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="90"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle" Fill="{StaticResource Expander.Static.Circle.Fill}" HorizontalAlignment="Center" Height="19" Stroke="{StaticResource Expander.Static.Circle.Stroke}" VerticalAlignment="Center" Width="19"/>
+                                    <Path x:Name="arrow" Data="M 1,1.5 L 4.5,5 L 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="false" Stroke="{StaticResource Expander.Static.Arrow.Stroke}" StrokeThickness="2" VerticalAlignment="Center"/>
+                                </Grid>
+                                <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" Grid.Row="1" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.MouseOver.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Stroke}"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Pressed.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Disabled.Arrow.Stroke}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderHeaderFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border>
+                            <Rectangle Margin="0" SnapsToDevicePixels="true" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="19"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse x:Name="circle" HorizontalAlignment="Center" Height="19" Stroke="{StaticResource Expander.Static.Circle.Stroke}" VerticalAlignment="Center" Width="19">
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                <GradientStop Color="#FFDDDDDD" Offset="0.503"/>
+                                                <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                                            </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Path x:Name="arrow" Data="M 1,1.5 L 4.5,5 L 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="false" Stroke="{StaticResource Expander.Static.Arrow.Stroke}" StrokeThickness="2" VerticalAlignment="Center"/>
+                                <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.MouseOver.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.MouseOver.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Stroke}"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Pressed.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Pressed.Arrow.Stroke}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Stroke" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Stroke}"/>
+                                <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Fill}"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Disabled.Arrow.Stroke}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderStyle1" TargetType="{x:Type Expander}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Expander}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="true">
+                            <DockPanel>
+                                <ToggleButton x:Name="HeaderSite" ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" Content="{TemplateBinding Header}" DockPanel.Dock="Top" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" Style="{StaticResource ExpanderDownHeaderStyle}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <ToggleButton.Background>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                            <GradientStop Color="#FFDDDDDD" Offset="0.503"/>
+                                            <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </ToggleButton.Background>
+                                </ToggleButton>
+                                <ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Visibility="Collapsed" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </DockPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="true">
+                                <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="ExpandDirection" Value="Right">
+                                <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Right"/>
+                                <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
+                                <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderRightHeaderStyle}"/>
+                            </Trigger>
+                            <Trigger Property="ExpandDirection" Value="Up">
+                                <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Top"/>
+                                <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
+                                <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderUpHeaderStyle}"/>
+                            </Trigger>
+                            <Trigger Property="ExpandDirection" Value="Left">
+                                <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Left"/>
+                                <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
+                                <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderLeftHeaderStyle}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF7F7F7" Offset="1"/>
+            <GradientStop Color="White"/>
+            <GradientStop Color="#FFFFFBFF" Offset="0.5"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <ListBox x:Name="lblAnswer" HorizontalAlignment="Left" Height="57" Margin="10,0,0,266" VerticalAlignment="Bottom" Width="529" FontSize="17" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="lblAnswer_SelectionChanged" FontFamily="Consolas"/>
+        <Button x:Name="btnEquals" Content="=" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Width="529" Click="btnEquals_Click" Height="25" FontSize="24" FontFamily="Times New Roman" Padding="-1,-3,0,0" FontWeight="ExtraBlack" FontStyle="Italic">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFE6E6E6" Offset="0.5"/>
+                    <GradientStop Color="#FFE0D9D9" Offset="0.5"/>
+                    <GradientStop Color="#FFB9B9B9" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="txtOutput" HorizontalAlignment="Left" Height="68" Margin="10,138,0,0" Text="0" VerticalAlignment="Top" Width="529" IsUndoEnabled="False" FontFamily="Consolas" Foreground="#FF0051A2" IsReadOnly="True" VerticalScrollBarVisibility="Visible" Background="White" SelectionBrush="{x:Null}" TextWrapping="Wrap" FontWeight="Thin" FontSize="19"/>
+        <TabControl Height="221" VerticalAlignment="Bottom">
+            <TabItem Header="Basic" FontWeight="SemiBold" Height="23" VerticalAlignment="Bottom">
+                <Grid Background="White">
+                    <Button x:Name="btn8" Content="8" HorizontalAlignment="Left" Margin="96,41,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn8_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn4" Content="4" HorizontalAlignment="Left" Margin="311,12,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn4_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn0" Content="0" HorizontalAlignment="Left" Margin="23,12,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn0_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn9" Content="9" HorizontalAlignment="Left" Margin="168,41,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn9_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn5" Content="5" HorizontalAlignment="Left" Margin="383,12,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn5_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn1" Content="1" HorizontalAlignment="Left" Margin="95,12,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn1_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPoint" Content="." HorizontalAlignment="Left" Margin="240,41,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPoint_Click" FontFamily="Consolas"/>
+                    <Button x:Name="bksp" Content="bksp" HorizontalAlignment="Left" Margin="311,41,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="bksp_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn6" Content="6" HorizontalAlignment="Left" Margin="455,12,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn6_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn7" Content="7" HorizontalAlignment="Left" Margin="24,41,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn7_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn2" Content="2" HorizontalAlignment="Left" Margin="167,12,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn2_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btn3" Content="3" HorizontalAlignment="Left" Margin="239,12,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btn3_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnC" Content="C" HorizontalAlignment="Left" Margin="383,41,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="14" FontWeight="Medium" Foreground="#FF8D0000" Click="btnC_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFFBEDED"/>
+                                <GradientStop Color="#FFF0CDCD" Offset="0.5"/>
+                                <GradientStop Color="#FFD49F9F" Offset="0.506"/>
+                                <GradientStop Color="#FFFFDCDC" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnAC" Content="AC" HorizontalAlignment="Left" Margin="455,41,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="14" FontWeight="Medium" Foreground="#FF8D0000" Click="btnAC_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFFBEDED"/>
+                                <GradientStop Color="#FFF0CDCD" Offset="0.5"/>
+                                <GradientStop Color="#FFD49F9F" Offset="0.506"/>
+                                <GradientStop Color="#FFFFDCDC" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnOpenParen" Content="(" HorizontalAlignment="Left" Margin="311,70,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnOpenParen_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPlus" Content="+" HorizontalAlignment="Left" Margin="23,70,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPlus_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCloseParen" Content=")" HorizontalAlignment="Left" Margin="383,70,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCloseParen_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMinus" Content="-" HorizontalAlignment="Left" Margin="95,70,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMinus_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnFact" Content="!" HorizontalAlignment="Left" Margin="455,70,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFact_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMult" Content="*" HorizontalAlignment="Left" Margin="167,70,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnMult_Click"/>
+                    <Button x:Name="btnDiv" Content="/" HorizontalAlignment="Left" Margin="239,70,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDiv_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnComb" Content="nCr" HorizontalAlignment="Left" Margin="95,99,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnComb_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnExp" Content="E" HorizontalAlignment="Left" Margin="167,99,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnExp_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPerm" Content="nPr" HorizontalAlignment="Left" Margin="23,99,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPerm_Click" FontFamily="Consolas"/>
+                    <Button x:Name="Manual" Content="Manual" Margin="24,128,0,0" VerticalAlignment="Top" Click="Manual_Click" FontWeight="SemiBold" HorizontalAlignment="Left" Width="210">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="#FFE6E6E6" Offset="0.5"/>
+                                <GradientStop Color="#FFE0D9D9" Offset="0.513"/>
+                                <GradientStop Color="#FFB9B9B9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnPow" Content="x^y" HorizontalAlignment="Left" Margin="239,99,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPow_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPerc1" Content="%" HorizontalAlignment="Left" Margin="311,99,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPerc1_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAns" Content="Ans" HorizontalAlignment="Left" Margin="383,99,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAns_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPoly" Content="P(x)" HorizontalAlignment="Left" Margin="455,99,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPoly_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSol" Content="Get Solution" Margin="239,128,0,0" VerticalAlignment="Top" Click="btnSol_Click" FontWeight="SemiBold" HorizontalAlignment="Left" Width="283">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="#FFE6E6E6" Offset="0.5"/>
+                                <GradientStop Color="#FFE0D9D9" Offset="0.513"/>
+                                <GradientStop Color="#FFB9B9B9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Algebra" FontWeight="SemiBold" >
+                <Grid Background="White">
+                    <Button x:Name="btnexp" Content="exp" HorizontalAlignment="Left" Margin="24,14,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnpowe_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnConst" Content="const" HorizontalAlignment="Left" Margin="24,43,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnConst_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnLn" Content="ln" HorizontalAlignment="Left" Margin="240,14,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnLn_Click"/>
+                    <Button x:Name="btnLoga" Content="log" HorizontalAlignment="Left" Margin="168,14,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnLoga_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMod" Content="mod" HorizontalAlignment="Left" Margin="96,14,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMod_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnGcd" Content="gcd" HorizontalAlignment="Left" Margin="96,43,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="14" FontWeight="Medium" Foreground="#FF250074" Click="btnGcd_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnConv" Content="conv" HorizontalAlignment="Left" Margin="24,72,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnConv_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnLcm" Content="lcm" HorizontalAlignment="Left" Margin="168,43,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnLcm_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDms" Content="dms" HorizontalAlignment="Left" Margin="456,44,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDms_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDec" Content="dec" HorizontalAlignment="Left" Margin="384,14,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDec_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnInt" Content="int" HorizontalAlignment="Left" Margin="240,72,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnInt_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSqr" Content="x²" HorizontalAlignment="Left" Margin="312,14,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSqr_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSqrt" Content="√x" HorizontalAlignment="Left" Margin="240,43,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="15" Foreground="#FF250074" Click="btnSqrt_Click" FontFamily="Consolas" Padding="1,2,1,1" FontWeight="Normal"/>
+                    <Button x:Name="btnRoot" Content="root" HorizontalAlignment="Left" Margin="168,72,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnRoot_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnReci" Content="x⁻¹" HorizontalAlignment="Left" Margin="456,72,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnReci_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPerc" Content="perc" HorizontalAlignment="Left" Margin="312,43,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPerc_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSign" Content="sign" HorizontalAlignment="Left" Margin="168,101,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnSign_Click"/>
+                    <Button x:Name="btnCeil" Content="ceil" HorizontalAlignment="Left" Margin="97,101,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCeil_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnFloor" Content="floor" HorizontalAlignment="Left" Margin="24,101,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFloor_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCube" Content="x³" HorizontalAlignment="Left" Margin="384,43,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" Foreground="#FF250074" Click="btnCube_Click" FontFamily="Consolas" Padding="1,-2,1,1" FontWeight="Normal"/>
+                    <Button x:Name="btnRec" Content="rec" HorizontalAlignment="Left" Margin="384,72,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnRec_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPol" Content="pol" HorizontalAlignment="Left" Margin="312,72,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPol_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCbrt" Content="∛x" HorizontalAlignment="Left" Margin="456,14,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" Foreground="#FF250074" Click="btnCbrt_Click" FontFamily="Consolas" Padding="1,-1,1,1" FontWeight="Normal"/>
+                    <Button x:Name="btnDeg" Content="deg" HorizontalAlignment="Left" Margin="96,72,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDeg_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnComma" Content="," HorizontalAlignment="Left" Margin="240,101,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnComma_Click"/>
+                    <Button x:Name="btnSemiColon" Content=";" HorizontalAlignment="Left" Margin="312,101,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnSemiColon_Click"/>
+                    <Button x:Name="btnSec1" Content="&quot;" HorizontalAlignment="Left" Margin="24,130,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnSec1_Click"/>
+                    <Button x:Name="btnMin1" Content="'" HorizontalAlignment="Left" Margin="456,101,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnMin1_Click"/>
+                    <Button x:Name="btnDegSym" Content="°" HorizontalAlignment="Left" Margin="384,101,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnDegSym_Click"/>
+                    <Button x:Name="btnGrad1" Content="ᵍ" HorizontalAlignment="Left" Margin="241,130,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnGrad1_Click"/>
+                    <Button x:Name="btnRad" Content="ʳ" HorizontalAlignment="Left" Margin="169,130,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnRad_Click"/>
+                    <Button x:Name="btnDeg1" Content="ᵈ" HorizontalAlignment="Left" Margin="97,130,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnDeg1_Click"/>
+                    <Button x:Name="btnEc" Content="e" HorizontalAlignment="Left" Margin="385,130,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnEc_Click"/>
+                    <Button x:Name="btnPi" Content="π" HorizontalAlignment="Left" Margin="313,130,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnPi_Click"/>
+                    <Button x:Name="btnRnd" Content="Rnd" HorizontalAlignment="Left" Margin="456,130,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnRnd_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Trigonometry" FontWeight="SemiBold">
+                <Grid Background="White" Margin="0,0,0,1">
+                    
+                    <Button x:Name="btnSin" Content="sin" HorizontalAlignment="Left" Margin="56,30,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSin_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAcos" Content="acos" HorizontalAlignment="Left" Margin="128,59,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAcos_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAsin" Content="asin" HorizontalAlignment="Left" Margin="56,59,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAsin_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnTan" Content="tan" HorizontalAlignment="Left" Margin="200,30,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnTan_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCos" Content="cos" HorizontalAlignment="Left" Margin="128,30,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCos_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAcosh" Content="acosh" HorizontalAlignment="Left" Margin="128,117,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAcosh_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnTanh" Content="tanh" HorizontalAlignment="Left" Margin="200,88,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnTanh_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAtan" Content="atan" HorizontalAlignment="Left" Margin="200,59,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAtan_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCosh" Content="cosh" HorizontalAlignment="Left" Margin="128,88,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCosh_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAsinh" Content="asinh" HorizontalAlignment="Left" Margin="56,117,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAsinh_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSinh" Content="sinh" HorizontalAlignment="Left" Margin="56,88,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSinh_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAtanh" Content="atanh" HorizontalAlignment="Left" Margin="200,117,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAtanh_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCot" Content="cot" HorizontalAlignment="Left" Margin="416,30,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCot_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSec" Content="sec" HorizontalAlignment="Left" Margin="344,30,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSec_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCosec" Content="cosec" HorizontalAlignment="Left" Margin="272,30,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCosec_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAcot" Content="acot" HorizontalAlignment="Left" Margin="416,59,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAcot_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAsec" Content="asec" HorizontalAlignment="Left" Margin="344,59,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAsec_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAcosec" Content="acosec" HorizontalAlignment="Left" Margin="272,59,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAcosec_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAcoth" Content="acoth" HorizontalAlignment="Left" Margin="416,117,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAcoth_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCoth" Content="coth" HorizontalAlignment="Left" Margin="416,88,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCoth_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAsech" Content="asech" HorizontalAlignment="Left" Margin="344,117,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAsech_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSech" Content="sech" HorizontalAlignment="Left" Margin="344,88,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSech_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAcosech" Content="acosech" HorizontalAlignment="Left" Margin="272,117,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnAcosech_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCosech" Content="cosech" HorizontalAlignment="Left" Margin="272,88,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCosech_Click" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Complex Numbers" FontWeight="SemiBold" >
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFDBE0EA" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="White">
+                    <Button x:Name="btnI" Content="i" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnI_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnArg" Content="arg" HorizontalAlignment="Left" Margin="231,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnArg_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnAngle" Content="∠" HorizontalAlignment="Left" Margin="159,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="22" FontWeight="Medium" Foreground="#FF250074" Click="btnAngle_Click" FontFamily="Consolas" Padding="1,-5,1,1"/>
+                    <Button x:Name="btnZ" Content="Z(x,y)" HorizontalAlignment="Left" Margin="87,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="15" FontWeight="Medium" Foreground="#FF250074" Click="btnZ_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnImag" Content="Im" HorizontalAlignment="Left" Margin="375,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnImag_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnReal" Content="Re" HorizontalAlignment="Left" Margin="303,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnReal_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnFz" Content="f(z)" HorizontalAlignment="Left" Margin="15,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnFz_Click"/>
+                    <Button x:Name="btnF_z" Content="f'(z)" HorizontalAlignment="Left" Margin="447,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnF_z_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnEquZ" Content="equ(z)" HorizontalAlignment="Left" Margin="87,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnEquZ_Click" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Calculus" FontWeight="SemiBold">
+                <Grid Background="White">
+                    <Button x:Name="btnFx" Content="f(x;a)" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFx_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnFtable" Content="ftable" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFtable_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnLimits" Content="lim" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnLimits_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnIntegral" Content="∫f(x)dx" HorizontalAlignment="Left" Margin="228,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="15" FontWeight="Medium" Foreground="#FF250074" Click="btnIntegral_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnParDer" Content="∂/∂x" HorizontalAlignment="Left" Margin="156,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="17" FontWeight="Medium" Foreground="#FF250074" Click="btnParDer_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnFplot" Content="fplot" HorizontalAlignment="Left" Margin="12,40,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFplot_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnEqu" Content="equ" HorizontalAlignment="Left" Margin="228,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnEqu_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnRect" Content="rectify" HorizontalAlignment="Left" Margin="156,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnRect_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDIff" Content="d/dx" HorizontalAlignment="Left" Margin="300,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDIff_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnFsum" Content="∑f(x)" HorizontalAlignment="Left" Margin="84,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFsum_Click" FontFamily="Times New Roman" FontStyle="Italic" Padding="1,-3,1,1"/>
+                    <Button x:Name="btnFproduct" Content="∏ f(x)" HorizontalAlignment="Left" Margin="444,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFproduct_Click" FontFamily="Times New Roman" FontStyle="Italic" Padding="1,-3,1,1"/>
+                    <Button x:Name="btnDiffEqu" Content="diff. equ" HorizontalAlignment="Left" Margin="372,40,0,0" VerticalAlignment="Top" Width="139" Height="24" FontSize="14" FontWeight="Medium" Foreground="#FF250074" Click="btnDiffEqu_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnContinuity" Content="cont" HorizontalAlignment="Left" Margin="372,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnContinuity_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnTera" Content="tera" HorizontalAlignment="Left" Margin="12,92,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnTera_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMilli" Content="milli" HorizontalAlignment="Left" Margin="300,92,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMilli_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnKilo" Content="kilo" HorizontalAlignment="Left" Margin="228,92,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnKilo_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMega" Content="mega" HorizontalAlignment="Left" Margin="156,92,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMega_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnGiga" Content="giga" HorizontalAlignment="Left" Margin="84,92,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnGiga_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnFermi" Content="fermi" HorizontalAlignment="Left" Margin="84,121,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnFermi_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPico" Content="pico" HorizontalAlignment="Left" Margin="12,121,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPico_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnNano" Content="nano" HorizontalAlignment="Left" Margin="444,92,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnNano_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMicro" Content="micro" HorizontalAlignment="Left" Margin="372,92,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMicro_Click" FontFamily="Consolas" RenderTransformOrigin="0.5,0.5">
+                    </Button>
+                    <Button x:Name="btnRan" Content="Ran#" HorizontalAlignment="Left" Margin="156,121,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnRan_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnInf" Content="inf" HorizontalAlignment="Left" Margin="228,121,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnInf_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnNInf" Content="-inf" HorizontalAlignment="Left" Margin="300,121,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnNInf_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDefineFx" Content="f(x)" HorizontalAlignment="Left" Margin="372,121,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDefineFx_Click" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Vectors" FontWeight="SemiBold">
+                <Grid Background="White">
+                    <Button x:Name="btnVector" Content="v()" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnVector_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCross" Content="cross" HorizontalAlignment="Left" Margin="154,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCross_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDot" Content="dot" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDot_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDir" Content="dir" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDir_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMag" Content="mag" HorizontalAlignment="Left" Margin="226,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMag_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDiv1" Content="div" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDiv1_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnTrip" Content="trip" HorizontalAlignment="Left" Margin="82,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnTrip_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnBox" Content="[xyz]" HorizontalAlignment="Left" Margin="154,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnBox_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnGrad" Content="grad" HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnGrad_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCurl" Content="curl" HorizontalAlignment="Left" Margin="370,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCurl_Click" FontFamily="Consolas"/>
+                    <GroupBox Header="Matrices" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="92" Width="398" BorderBrush="Black" FontSize="13">
+                        <Grid>
+                            <Button x:Name="btnMatInv" Content="inv" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" FontFamily="Consolas" Click="btnMatInv_Click"/>
+                            <Button x:Name="btnM" Content="[a b]" HorizontalAlignment="Left" Margin="10,39,0,-7" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnM_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnDisp" Content="disp" HorizontalAlignment="Left" Margin="226,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDisp_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnTrn" Content="trn" HorizontalAlignment="Left" Margin="154,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnTrn_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnDet" Content="det" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDet_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnID" Content="I" HorizontalAlignment="Left" Margin="82,39,0,-7" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnID_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnMatDiv2" Content="\" HorizontalAlignment="Left" Margin="226,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMatDiv2_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnMatDiv1" Content="÷" HorizontalAlignment="Left" Margin="154,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMatDiv1_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnMatAns" Content="MatAns" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMatAns_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnPolyAns" Content="PolyAns" HorizontalAlignment="Left" Margin="298,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="14" FontWeight="Medium" Foreground="#FF250074" Click="btnPolyAns_Click" FontFamily="Consolas"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Data" FontWeight="SemiBold">
+                <Grid Background="White" Margin="0">
+                    <Button x:Name="btnDefX" Content="Data" HorizontalAlignment="Left" Margin="426,10,0,0" VerticalAlignment="Top" Width="112" Height="28" FontSize="16" FontWeight="Medium" Foreground="#FF1F0061" Click="btnDefX_Click" FontFamily="Consolas">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFD8E3FF" Offset="0.004"/>
+                                <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <GroupBox Header="Probability:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="60" Width="394" FontFamily="Consolas" FontSize="13" BorderBrush="Black">
+                        <Grid>
+                            <Button x:Name="btnPz" Content="P(z)" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPz_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnT" Content="Z(x)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnT_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnRz" Content="R(z)" HorizontalAlignment="Left" Margin="226,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnRz_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnQz" Content="Q(z)" HorizontalAlignment="Left" Margin="154,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnQz_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnSz" Content="S(z)" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSz_Click" FontFamily="Consolas"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Variables:" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Height="89" Width="528" FontFamily="Consolas" FontSize="13" BorderBrush="Black">
+                        <Grid>
+                            <Button x:Name="btnB1" Content="B" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnB1_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnA1" Content="A" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnA1_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnD" Content="D" HorizontalAlignment="Left" Margin="226,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnD_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnC2" Content="C" HorizontalAlignment="Left" Margin="154,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnC2_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnF" HorizontalAlignment="Left" Margin="370,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnF_Click" FontFamily="Consolas" Content="F"/>
+                            <Button x:Name="btnE" Content="E" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnE_Click" FontFamily="Consolas"/>
+                            <Button x:Name="btnM1" Content="M" HorizontalAlignment="Left" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnM1_Click" FontFamily="Consolas" Margin="442,10,0,0"/>
+                            <Button x:Name="btnY" Content="Y" HorizontalAlignment="Left" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnY_Click" FontFamily="Consolas" Margin="10,39,0,0"/>
+                            <Button x:Name="btnX" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnX_Click" FontFamily="Consolas" Margin="82,39,0,0"/>
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="btnDisp1" Content="disp" HorizontalAlignment="Left" Margin="461,43,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDisp1_Click" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Statistics" FontWeight="SemiBold" >
+                <Grid Background="White">
+                    <Button x:Name="btnCorr" Content="corr" HorizontalAlignment="Left" Margin="455,27,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCorr_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCov" Content="cov" HorizontalAlignment="Left" Margin="383,27,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCov_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSdPop" Content="sd pop" HorizontalAlignment="Left" Margin="311,27,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSdPop_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSd" Content="s.d" HorizontalAlignment="Left" Margin="239,27,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSd_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMode" Content="mode" HorizontalAlignment="Left" Margin="167,27,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMode_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMedian" Content="median" HorizontalAlignment="Left" Margin="95,27,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMedian_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMean" Content="mean" HorizontalAlignment="Left" Margin="23,27,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMean_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSumX3" Content="∑x³" HorizontalAlignment="Left" Margin="239,56,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumX3_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnSumX2Y2" Content="∑x²y²" HorizontalAlignment="Left" Margin="455,56,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumX2Y2_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnSumSumX2Y" Content="∑x²y" HorizontalAlignment="Left" Margin="383,56,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumSumX2Y_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnSumXY" Content="∑xy" HorizontalAlignment="Left" Margin="311,56,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumXY_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnSumx2" Content="∑x²" HorizontalAlignment="Left" Margin="167,56,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumx2_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnSumX" Content="∑x" HorizontalAlignment="Left" Margin="95,56,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumX_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnC1" Content="c" HorizontalAlignment="Left" Margin="383,85,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnC1_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnQd" Content="qd" HorizontalAlignment="Left" Margin="95,85,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnQd_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnB" Content="b" HorizontalAlignment="Left" Margin="311,85,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnB_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnA" Content="a" HorizontalAlignment="Left" Margin="239,85,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnA_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnRange" Content="range" HorizontalAlignment="Left" Margin="23,85,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnRange_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnReg" Content="fit" HorizontalAlignment="Left" Margin="167,85,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnReg_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnChart" Content="chart" HorizontalAlignment="Left" Margin="23,56,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnChart_Click" FontFamily="Consolas"/>
+                    <Button x:Name="bntN" Content="n" HorizontalAlignment="Left" Margin="311,114,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="bntN_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMax" Content="max" HorizontalAlignment="Left" Margin="239,114,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMax_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSumX3Y3" Content="∑x³y³" HorizontalAlignment="Left" Margin="23,114,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumX3Y3_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnMin" Content="min" HorizontalAlignment="Left" Margin="167,114,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMin_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSumY" Content="∑y" HorizontalAlignment="Left" Margin="95,114,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSumY_Click" FontFamily="Times New Roman" FontStyle="Italic"/>
+                    <Button x:Name="btnNormal" Content="norm" HorizontalAlignment="Left" Margin="455,85,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnNormal_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnBin" Content="bin" HorizontalAlignment="Left" Margin="383,114,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnBin_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnPois" Content="pois" HorizontalAlignment="Left" Margin="455,114,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPois_Click" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Geometry" FontWeight="SemiBold">
+                <Grid Background="White">
+                    <Button x:Name="btnArea" Content="area" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnArea_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDistForm" Content="dist formula" HorizontalAlignment="Left" Margin="370,10,0,0" VerticalAlignment="Top" Width="168" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDistForm_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCircle" Content="circle" HorizontalAlignment="Left" Margin="370,39,0,0" VerticalAlignment="Top" Width="168" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCircle_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSecFormula" Content="sec formula" HorizontalAlignment="Left" Margin="226,39,0,0" VerticalAlignment="Top" Width="139" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSecFormula_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDistBet" Content="dist bet parallel lines" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="291" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDistBet_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnMidPt" Content="mid pt." HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnMidPt_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnCentroid" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" Width="102" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnCentroid_Click" FontFamily="Consolas" Content="centroid"/>
+                    <Button x:Name="btnPerimeter" Content="perimeter" HorizontalAlignment="Left" Margin="154,10,0,0" VerticalAlignment="Top" Width="104" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnPerimeter_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnVol" Content="volume" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="67" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnVol_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSolveTri" Content="solve tri" HorizontalAlignment="Left" Margin="82,39,0,0" VerticalAlignment="Top" Width="139" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSolveTri_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnDistPoint" Content="dist of pt from line" HorizontalAlignment="Left" VerticalAlignment="Top" Width="232" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnDistPoint_Click" FontFamily="Consolas" Margin="306,68,0,0"/>
+                    <Button x:Name="btnHyperbola" Content="hyperbola" HorizontalAlignment="Left" Margin="356,97,0,0" VerticalAlignment="Top" Width="182" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnHyperbola_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnEllipse" Content="ellipse" HorizontalAlignment="Left" Margin="183,97,0,0" VerticalAlignment="Top" Width="168" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnEllipse_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnParabola" Content="parabola" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Width="168" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnParabola_Click" FontFamily="Consolas"/>
+                    <Button x:Name="btnSolveTri2" Content="solve tri 2" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Width="139" Height="24" FontSize="16" FontWeight="Medium" Foreground="#FF250074" Click="btnSolveTri2_Click" FontFamily="Consolas"/>
+                </Grid>
+            </TabItem>
+            <TabItem  FontWeight="SemiBold" Header="Settings">
+                <Grid Background="White">
+                    <GroupBox Header="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="149" Width="132">
+                        <Grid>
+                            <RadioButton x:Name="radReal" Content="REAL" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" GroupName="Mode" FontSize="13" FontWeight="SemiBold" Checked="radReal_Checked" Foreground="#FF004B76"/>
+                            <RadioButton x:Name="radComplex" Content="COMPLEX" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" GroupName="Mode" FontSize="13" FontWeight="SemiBold" Checked="radComplex_Checked" Foreground="#FF004B76"/>
+                            <RadioButton x:Name="radVector" Content="VECTOR" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" GroupName="Mode" FontSize="13" FontWeight="SemiBold" Checked="radVector_Checked" Foreground="#FF004B76"/>
+                            <RadioButton x:Name="radPolynomial" Content="POLYNOMIAL" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" GroupName="Mode" FontSize="13" FontWeight="SemiBold" Checked="radPolynomial_Checked" Foreground="#FF004B76"/>
+                            <RadioButton x:Name="radMatrix" Content="MATRIX" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" GroupName="Mode" FontSize="13" FontWeight="SemiBold" Checked="radMatrix_Checked" Foreground="#FF004B76"/>
+                        </Grid>
+                    </GroupBox>
+                    <TextBlock HorizontalAlignment="Left" Margin="193,11,0,0" TextWrapping="Wrap" Text="Precision:" VerticalAlignment="Top" FontSize="14"/>
+                    <Slider x:Name="slPrecision" HorizontalAlignment="Left" Margin="259,8,0,0" VerticalAlignment="Top" Width="269" Maximum="12" SmallChange="1" Value="1" Minimum="1" TickPlacement="BottomRight"/>
+                    <Label Content="Complex Display:" HorizontalAlignment="Left" Margin="193,36,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Height="25"/>
+                    <ComboBox x:Name="cmbSystem" HorizontalAlignment="Left" Margin="302,38,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="0" SelectionChanged="cmbSystem_SelectionChanged">
+                        <ComboBoxItem Content="Cartesian"/>
+                        <ComboBoxItem Content="Polar"/>
+                    </ComboBox>
+                    <ComboBox x:Name="cmbDisp" HorizontalAlignment="Left" Margin="302,137,0,0" VerticalAlignment="Top" Width="226" SelectedIndex="0" SelectionChanged="cmbDisp_SelChanged">
+                        <ComboBoxItem Content="DECIMAL"/>
+                        <ComboBoxItem Content="FRACTIONAL"/>
+                    </ComboBox>
+                    <CheckBox x:Name="chk3d" Content="Chart Enable 3D" HorizontalAlignment="Left" Margin="407,40,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF1100BB" Checked="chk3d_Checked" Unchecked="chk3d_Unchecked"/>
+                    <GroupBox Header="Angle Mode:" HorizontalAlignment="Left" Margin="193,68,0,0" VerticalAlignment="Top" Width="178" Height="53" Padding="0">
+                        <Grid>
+                            <RadioButton x:Name="rbDeg" Content="DEG" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FF004B97" Width="44" Checked="rbDeg_Checked"/>
+                            <RadioButton x:Name="rbGrad" Content="GRAD" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Foreground="#FF004B97" Width="52" Checked="rbGrad_Checked"/>
+                            <RadioButton x:Name="rbRad" Content="RAD" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Foreground="#FF004B97" Width="44" Checked="rbRad_Checked"/>
+                        </Grid>
+                    </GroupBox>
+                    <Label Content="Display:" HorizontalAlignment="Left" Margin="244,135,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Height="25"/>
+                    <Label Content="ymax:" HorizontalAlignment="Left" Margin="376,93,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Height="25" Width="42"/>
+                    <Label Content="xmax:" HorizontalAlignment="Left" Margin="376,68,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Height="25"/>
+                    <WindowsFormsHost HorizontalAlignment="Left" Height="25" Margin="423,68,0,0" VerticalAlignment="Top" Width="115">
+                        <Forms:NumericUpDown x:Name="nd1" Font="Consolas,12" Maximum="1000" Minimum="1" Increment="1" ValueChanged="nd1_ValueChanged"></Forms:NumericUpDown>
+                    </WindowsFormsHost>
+                    <WindowsFormsHost HorizontalAlignment="Left" Height="25" Margin="423,98,0,0" VerticalAlignment="Top" Width="115">
+                        <Forms:NumericUpDown x:Name="nd2" Font="Consolas,12" Maximum="1000" Minimum="1" Increment="1" ValueChanged="nd2_ValueChanged"/>
+                    </WindowsFormsHost>
+                </Grid>
+            </TabItem>
+            <TabItem Header="History" FontWeight="SemiBold">
+                <Grid>
+                    <ListBox x:Name="lstHistory" Height="129" VerticalAlignment="Top" SelectionChanged="lstHistory_SelectionChanged" FontSize="16" FontFamily="Consolas" Foreground="#FF001574" FontWeight="Normal"/>
+                    <Button x:Name="btnLogFile" Content="Write Log File" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="253" Click="btnLogFile_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="#FFBBB69F" Offset="0.5"/>
+                                <GradientStop Color="#FFE4E4E3" Offset="1"/>
+                                <GradientStop Color="#FFE4D9C7" Offset="0.493"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Save Log File to:" VerticalAlignment="Top" Margin="283,137,0,0"/>
+                    <ComboBox x:Name="cmbDrive" HorizontalAlignment="Left" Margin="385,134,0,0" VerticalAlignment="Top" Width="153" FontFamily="Consolas" FontSize="14" SelectedIndex="0">
+                        <ComboBoxItem>C</ComboBoxItem>
+                        <ComboBoxItem>D</ComboBoxItem>
+                        <ComboBoxItem>E</ComboBoxItem>
+                        <ComboBoxItem>F</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <TextBox x:Name="txtInput" HorizontalAlignment="Left" Height="70" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="529" Foreground="#FF00226C" FontFamily="Consolas" FontSize="19" VerticalScrollBarVisibility="Visible">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFEFF7FF"/>
+                    <GradientStop Color="#FFE4EBFF" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <GroupBox Header="Current Settings:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="48" Width="529" FontSize="13">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="10,3,0,0" TextWrapping="Wrap" Text="Angle:" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                <TextBlock HorizontalAlignment="Left" Margin="380,3,0,0" TextWrapping="Wrap" Text="Disp:" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                <TextBlock HorizontalAlignment="Left" Margin="249,3,0,0" TextWrapping="Wrap" Text="Display:" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                <TextBlock HorizontalAlignment="Left" Margin="121,3,0,0" TextWrapping="Wrap" Text="Mode:" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                <TextBlock x:Name="tSystem" HorizontalAlignment="Left" Margin="53,3,0,0" TextWrapping="Wrap" Text="DEGREES" VerticalAlignment="Top"/>
+                <TextBlock x:Name="tMode" HorizontalAlignment="Left" Margin="164,3,0,0" TextWrapping="Wrap" Text="REAL" VerticalAlignment="Top"/>
+                <TextBlock x:Name="tDisplay" Text="{Binding Path=SelectedItem.Content, ElementName=cmbDisp}" HorizontalAlignment="Left" Margin="300,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBlock x:Name="tComp" Margin="414,3,10,4" TextWrapping="Wrap" Text="{Binding Path=SelectedItem.Content,ElementName=cmbSystem}"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>

@@ -1,0 +1,164 @@
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.baml
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\App.g.cs
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Memory.resources
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Statistics.resources
+C:\Users\MELVILLE\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Form1.resources
+I:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+I:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+I:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.baml
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\App.g.cs
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Form1.resources
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Memory.resources
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Statistics.resources
+I:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+K:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+K:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+K:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.baml
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\App.g.cs
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Memory.resources
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Statistics.resources
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+H:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+H:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+H:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+J:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+J:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+J:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.baml
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\App.g.cs
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Form1.resources
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Memory.resources
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Statistics.resources
+J:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.baml
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\App.g.cs
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Memory.resources
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Statistics.resources
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.MessageBox.resources
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+C:\Users\WILLIAM\Desktop\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.MessageBox.resources
+K:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Matrices.resources
+L:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+L:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+L:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.baml
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\App.g.cs
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Matrices.resources
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Memory.resources
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Statistics.resources
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Messagebox.baml
+L:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Messagebox.g.cs
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.baml
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\App.g.cs
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.ChartStats.resources
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Conics.resources
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Data.resources
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.FunctionTable.resources
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+F:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+F:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+F:\Algebra And Calculus\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+F:\Algebra And Calculus\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+F:\Algebra And Calculus v2\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+F:\Algebra And Calculus v2\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+F:\Algebra And Calculus v2\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\MainWindow.baml
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\App.g.cs
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.ChartStats.resources
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Conics.resources
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Data.resources
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.FunctionTable.resources
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+G:\Algebra And Calculus v2\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe.config
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.exe
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.pdb
+G:\Algebra And Calculus v2\Algebra And Calculus\bin\Debug\Algebra And Calculus.exe
+G:\Algebra And Calculus v2\Algebra And Calculus\bin\Debug\Algebra And Calculus.pdb
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.csprojResolveAssemblyReference.cache
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\MainWindow.baml
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\MainWindow.g.cs
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\App.g.cs
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus_MarkupCompile.cache
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.g.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.ChartStats.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Conics.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Data.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Function.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.FunctionTable.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Graph.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Properties.Resources.resources
+G:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra And Calculus.csproj.GenerateResource.Cache
+F:\Algebra And Calculus v2\Algebra And Calculus\obj\Debug\Algebra_And_Calculus.Function.resources
